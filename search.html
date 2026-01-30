@@ -1,0 +1,39 @@
+---
+layout: default
+title: Search
+---
+
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Search commands, techniques, tools...">
+  <div id="search-results"></div>
+</div>
+
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script>
+// Simple client-side search
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+// Build search index from page content
+const pages = [
+  { title: 'Red Teaming', url: '/red-teaming', content: 'nmap reconnaissance...' },
+  { title: 'Pentesting', url: '/pentesting', content: 'web application...' }
+];
+
+searchInput.addEventListener('input', function(e) {
+  const query = e.target.value.toLowerCase();
+  if (query.length < 2) {
+    searchResults.innerHTML = '';
+    return;
+  }
+  
+  const results = pages.filter(page => 
+    page.title.toLowerCase().includes(query) || 
+    page.content.toLowerCase().includes(query)
+  );
+  
+  searchResults.innerHTML = results.map(r => 
+    `<div class="search-result"><a href="${r.url}">${r.title}</a></div>`
+  ).join('');
+});
+</script>
