@@ -1,2 +1,4 @@
-title: Pentesting Reference
-theme: jekyll-theme-midnight
+title: Pentesting Notes
+markdown: kramdown
+kramdown:
+  input: GFM

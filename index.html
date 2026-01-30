@@ -1,60 +1,71 @@
 ---
-layout: default
+layout: none
 ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pentesting Notes</title>
 
 <style>
 body {
   max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
-  font-family: -apple-system, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.7;
+  background: #0d1117;
+  color: #c9d1d9;
 }
 
 h1 {
-  border-bottom: 3px solid #000;
+  border-bottom: 2px solid #30363d;
   padding-bottom: 10px;
 }
 
 details {
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
   padding: 10px;
-  margin: 15px 0;
+  margin: 16px 0;
 }
 
 summary {
-  font-weight: bold;
   cursor: pointer;
-  padding: 10px;
-  font-size: 1.2em;
+  font-weight: 600;
+  font-size: 1.1em;
 }
 
 summary:hover {
-  background: #f5f5f5;
+  color: #58a6ff;
 }
 
 pre {
-  background: #f5f5f5;
-  padding: 15px;
-  border-left: 3px solid #000;
+  background: #0d1117;
+  border-left: 3px solid #58a6ff;
+  padding: 12px;
   overflow-x: auto;
 }
 
 code {
+  color: #e6edf3;
   font-family: monospace;
   font-size: 0.9em;
 }
 </style>
+</head>
 
-# Pentesting Notes
+<body>
+
+<h1>🛠 Pentesting Notes</h1>
 
 <details>
-<summary>Reconnaissance</summary>
-```bash
+  <summary>Reconnaissance</summary>
+  <pre><code>
 nmap -sn 192.168.1.0/24
+<<<<<<< HEAD
 nmap -sV -sC -p- <target>
 ```
 
@@ -64,13 +75,18 @@ dig @<dns-server> <domain> ANY
 dnsenum <domain>
 ```
 
+=======
+nmap -sV -sC -p- &lt;target&gt;
+  </code></pre>
+>>>>>>> c5e9e87 (Clean up GitHub Pages layout)
 </details>
 
 <details>
-<summary>Web Application Testing</summary>
-```bash
+  <summary>Web Application Testing</summary>
+  <pre><code>
 # SQL Injection
 sqlmap -u "http://target.com/page?id=1" --dbs
+<<<<<<< HEAD
 ```
 
 ### XSS
@@ -122,3 +138,25 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+=======
+
+# XSS
+&lt;script&gt;alert(1)&lt;/script&gt;
+&lt;img src=x onerror=alert(1)&gt;
+  </code></pre>
+</details>
+
+<details>
+  <summary>Privilege Escalation</summary>
+  <pre><code>
+# Linux SUID
+find / -perm -u=s -type f 2>/dev/null
+
+# Sudo
+sudo -l
+  </code></pre>
+</details>
+
+</body>
+</html>
+>>>>>>> c5e9e87 (Clean up GitHub Pages layout)
