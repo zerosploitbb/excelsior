@@ -140,7 +140,7 @@ HTML # Serve as xssi.html
     ```
 - Safe because:
     - Not valid JavaScript
-    - ``<script>`` tag fails to execute it
+    - ```<script>``` tag fails to execute it
     - Attacker gets nothing
 
 ### JSONP
