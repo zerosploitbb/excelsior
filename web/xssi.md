@@ -97,7 +97,7 @@ Instead use:
 - XSSI : Including victim's Javascript file to steal their data
 - Key: Only Work if sensitive data is in executable Javascript format
 
-# Exploit
+## Exploit
 ```
 HTML # Serve as xssi.html
 <!DOCTYPE html>
@@ -128,3 +128,38 @@ HTML # Serve as xssi.html
 </body>
 </html>
 ```
+
+## JSON vs JSONP
+### JSON
+- JSON is pure data format ```{"name": "John", "balance": 5000}```
+- Can't execute as JavaScript
+    ```
+    <script src="https://api.com/data.json"></script>
+    <!-- Browser tries to execute it → SYNTAX ERROR -->
+    <!-- Attacker can't read it -->
+    ```
+- Safe because:
+    - Not valid JavaScript
+    - <script> tag fails to execute it
+    - Attacker gets nothing
+
+### JSONP
+- JSON wrapped in a function call ```callback({"name": "John", "balance": 5000});```
+- CAN execute as JavaScript
+    ```
+    <script>
+    function callback(data) {
+        // Attacker controls this function
+        alert(data.balance); // 5000 - STOLEN!
+    }
+    </script>
+
+    <script src="https://api.com/data.jsonp?callback=callback"></script>
+    <!-- Executes successfully → data stolen -->
+    ```
+- Vulnerable because:
+    - Valid JavaScript
+    - Executes in attacker's page
+    - Attacker's function receives the data
+
+
